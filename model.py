@@ -19,10 +19,17 @@ class Engine(object):
 
 class Gearbox(object):
     def shiftUp(self):
-        pass
+        if self.currentGear < len(self.gears) - 1 and not self.clutchEngaged:
+         self.currentGear +=1
 
     def ShiftDown(self):
-        pass
+        if self.currentGear > 0 and not self.clutchEngaged:
+            self.currentGear -=1
+
+    def rotate(self,revolutions):
+
+
+
 
     def __init__(self):
         self.wheels = {}
