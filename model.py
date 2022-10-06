@@ -4,12 +4,12 @@ class Car(object):
     pass
 
 class Wheel(object):
-    def __int__(self):
-        self.orientaion = randint(0,360)
+    def __init__(self):
+        self.orientation = randint(0,360)
 
     def rotate(self, revolutions):
         degreesOfRotation = 360 * revolutions
-        self.orientaion = (self.orientaion + degreesOfRotation) %360
+        self.orientation = (self.orientation + degreesOfRotation) %360
 
 
 
@@ -20,16 +20,17 @@ class Engine(object):
 class Gearbox(object):
     def shiftUp(self):
         if self.currentGear < len(self.gears) - 1 and not self.clutchEngaged:
-         self.currentGear +=1
+            self.currentGear +=1
 
-    def ShiftDown(self):
+    def shiftDown(self):
         if self.currentGear > 0 and not self.clutchEngaged:
-            self.currentGear -=1
+            self.currentGear -= 1
 
     def rotate(self,revolutions):
-
-
-
+        if self.clutchEngaged:
+            newRevs = revolutions * self.gears[self.currentGear]
+            for wheel in self.wheels:
+                self.wheels[wheel].rotate(newRevs)
 
     def __init__(self):
         self.wheels = {}
@@ -42,7 +43,7 @@ class Gearbox(object):
 
 class Tank(object):
 
-    def __int__(self):
+    def __init__(self):
         self.capacity = 100
         self.contents = 100
 
